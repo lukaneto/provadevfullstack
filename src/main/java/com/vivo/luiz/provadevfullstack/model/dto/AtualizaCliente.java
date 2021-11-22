@@ -1,17 +1,18 @@
 package com.vivo.luiz.provadevfullstack.model.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class AtualizaCliente {
     @ApiModelProperty(name = "id",value = "1",dataType = "java.land.Long",example = "1")
+    @NotNull
     private Long id;
     @ApiModelProperty(name = "nome",value = "teste",dataType = "java.land.String",example = "teste")
     private String nome;

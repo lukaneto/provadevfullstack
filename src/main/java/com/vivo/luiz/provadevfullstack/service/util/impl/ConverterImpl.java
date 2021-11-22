@@ -29,10 +29,6 @@ public class ConverterImpl<T,E> implements Converter<T,E> {
         return modelMapper.map(element,dtoClass);
     }
 
-    @Override
-    public List<T> listaEntidadeParaDto(List<E> element, Class<T> entidadeClass) {
-        return element.stream().map(e->this.entidadeParaDto(e,entidadeClass)).collect(Collectors.toList());
-    }
 
     @Override
     public Page<T> pageEntidadeParaDto(Page<E> ePage, Class<T> dtoClass) {

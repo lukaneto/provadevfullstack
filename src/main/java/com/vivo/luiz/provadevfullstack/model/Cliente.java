@@ -1,5 +1,6 @@
 package com.vivo.luiz.provadevfullstack.model;
 
+import br.com.caelum.stella.bean.validation.CPF;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -22,6 +23,7 @@ public class Cliente implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
     private String nome;
+    @CPF
     private String cpf;
     private String telefone;
 

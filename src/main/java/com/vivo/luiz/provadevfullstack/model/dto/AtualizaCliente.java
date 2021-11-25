@@ -1,9 +1,11 @@
 package com.vivo.luiz.provadevfullstack.model.dto;
 
+import br.com.caelum.stella.bean.validation.CPF;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
+
 
 @Getter
 @Setter
@@ -11,13 +13,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 public class AtualizaCliente {
-    @ApiModelProperty(name = "id",value = "1",dataType = "java.land.Long",example = "1")
-    @NotNull
+    @ApiModelProperty(name = "id",value = "1",dataType = "java.lang.Long",example = "1")
+    @NotNull(message = "O id é obrigatorio para atualizar")
     private Long id;
-    @ApiModelProperty(name = "nome",value = "teste",dataType = "java.land.String",example = "teste")
+    @ApiModelProperty(name = "nome",value = "teste",dataType = "java.lang.String",example = "teste")
     private String nome;
-    @ApiModelProperty(name = "cpf",value = "000.000.00-00",dataType = "java.land.String",example = "000.000.00-00")
+    @CPF(message = "cpf deve ser valido")
+    @ApiModelProperty(name = "cpf",value = "000.000.00-00",dataType = "java.lang.String",example = "000.000.00-00")
     private String cpf;
-    @ApiModelProperty(name = "telefone",value = "(00) 0000-0000",dataType = "java.land.String",example = "(00) 0000-0000")
+    @ApiModelProperty(name = "telefone",value = "(00) 0000-0000",dataType = "java.lang.String",example = "(00) 0000-0000")
     private String telefone;
 }

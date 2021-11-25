@@ -3,10 +3,7 @@ package com.vivo.luiz.provadevfullstack.model;
 import br.com.caelum.stella.bean.validation.CPF;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -23,8 +20,8 @@ public class Cliente implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
     private String nome;
-    @CPF
+    @Column(unique=true)
+    @CPF(message = "cpf deve ser valido")
     private String cpf;
     private String telefone;
-
 }

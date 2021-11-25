@@ -1,6 +1,5 @@
 package com.vivo.luiz.provadevfullstack.controller;
 
-import br.com.caelum.stella.bean.validation.CPF;
 import com.vivo.luiz.provadevfullstack.model.dto.AtualizaCliente;
 import com.vivo.luiz.provadevfullstack.model.dto.ConsultaCliente;
 import com.vivo.luiz.provadevfullstack.model.dto.CriaCliente;
@@ -15,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -47,7 +46,7 @@ public class ClienteController {
 
     @GetMapping(value = "v1/filtra")
     @ApiOperation(value = "filtra clientes",  response = Cliente.class, responseContainer = "Page")
-    public ResponseEntity< Page<ConsultaCliente>> filtra(@Validated @ModelAttribute FiltraCliente  filtraCliente){
+    public ResponseEntity< Page<ConsultaCliente>> filtra( @ModelAttribute @Valid FiltraCliente  filtraCliente){
         Page<ConsultaCliente> page = clienteService.filtraCliente(filtraCliente);
         return new ResponseEntity<>(page, HttpStatus.OK);
     }
@@ -55,14 +54,14 @@ public class ClienteController {
 
     @PostMapping (value = "v1/salvar")
     @ApiOperation(value = "salvar clientes", response = Cliente.class)
-    public ResponseEntity<ConsultaCliente> salva(@Valid @RequestBody CriaCliente cliente){
+    public ResponseEntity<ConsultaCliente> salva( @RequestBody @Valid CriaCliente cliente){
         Optional<ConsultaCliente> clienteOptional = clienteService.salvarNovo(cliente);
         return clienteOptional.map(value -> new ResponseEntity<>(value, HttpStatus.CREATED)).orElseGet(() -> new ResponseEntity<>(new ConsultaCliente(), HttpStatus.NOT_ACCEPTABLE));
     }
 
     @PutMapping (value = "v1/atualizar")
     @ApiOperation(value = "atualizar clientes", response = Cliente.class)
-    public ResponseEntity<ConsultaCliente> atualizar(@Validated @RequestBody AtualizaCliente cliente){
+    public ResponseEntity<ConsultaCliente> atualizar( @RequestBody  @Valid AtualizaCliente cliente){
         Optional<ConsultaCliente> clienteOptional = clienteService.atualizar(cliente);
         return clienteOptional.map(value -> new ResponseEntity<>(value, HttpStatus.ACCEPTED)).orElseGet(() -> new ResponseEntity<>(new ConsultaCliente(), HttpStatus.NOT_FOUND));
     }
